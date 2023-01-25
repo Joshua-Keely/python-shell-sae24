@@ -1,0 +1,27 @@
+#cloud-config
+cloud_config_modules:
+ - resolv_conf
+groups:
+ - users
+users:
+ - name: root
+ lock_passwd: true
+ - name: admin
+ lock_passwd: true
+ - name: sae24admin
+ gecos: sae24admin
+ sudo: ALL=(ALL) NOPASSWD:ALL
+ groups: users
+ home: /home/sae24admin
+ shell: /bin/bash
+ ssh-authorized-keys:
+ - 
+manage_resolv_conf: true
+resolv_conf:
+ nameservers: ['172.16.0.200']
+ searchdomains:
+ - rt.iut
+ - univ-grenoble-alpes.fr
+ options:
+ rotate: true
+ timeout: 1
